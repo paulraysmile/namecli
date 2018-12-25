@@ -24,9 +24,9 @@ again:
 	}
 	defer conn.Close()
 
-	seq := atomic.AddInt32(&seq, 1)
+	seq := atomic.AddUint32(&seq, 1)
 	req := fmt.Sprintf("%d,%s", seq, name)
-	_, err = conn.Write([]byte(seq))
+	_, err = conn.Write([]byte(req))
 	if err != nil {
 		return
 	}
